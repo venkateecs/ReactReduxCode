@@ -1,4 +1,5 @@
 export const CHG_POSTS = 'changepost';
+export const UPDATE_POST = 'updatepost';
 export function chgPosts (newValue) {
  return {
      type:CHG_POSTS,
@@ -7,6 +8,14 @@ export function chgPosts (newValue) {
      }
  }
 }
+export function updatePostdata (newValue) {
+    return {
+        type:UPDATE_POST,
+        payload:{
+            posts:newValue
+        }
+    }
+   }
 
 export function getPostAPI() {
   return function (dispatch) {

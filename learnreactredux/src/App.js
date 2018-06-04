@@ -4,13 +4,14 @@ import './App.css';
 import {connect} from 'react-redux' ;
 import {changeUser} from './actions/user-actions' ;
 import {changeItems} from './actions/items-actions' ;
-import {getPostAPI} from './actions/posts-actions' ;
+import {getPostAPI,updatePostdata} from './actions/posts-actions' ;
 import Home from './components/home' ;
 class App extends Component {
   constructor(props) {
     super(props) ;
     this.inputChgUser = this.inputChgUser.bind(this);
     this.insertItems = this.insertItems.bind(this);
+    this.updPost = this.updPost.bind(this);
   }
   inputChgUser(e) {
     this.props.chgUser(e.target.value);
@@ -21,6 +22,15 @@ class App extends Component {
   }
   componentWillMount(){
     this.props.getPostsData();
+  }
+  updPost() {
+    this.props.updPost({
+      "userId": 1,
+      "id": 1,
+      "title": "test title",
+      "body": "test body"
+    })
+    console.log('after==>',this.props)
   }
   render() {
     console.log(this.props)
@@ -41,6 +51,7 @@ class App extends Component {
         <h1>
           {this.props.appItems.length}
         </h1>
+        <button onClick={this.updPost}>UpdatePost</button>
       </div>
     );
   }
@@ -56,6 +67,7 @@ const mapStateToProps = (state,props) => {
 const mapActionsToProps = {
   chgUser: changeUser,
   chgItems:changeItems,
-  getPostsData:getPostAPI
+  getPostsData:getPostAPI,
+  updPost:updatePostdata
 }
 export default connect(mapStateToProps,mapActionsToProps)(App) ;

@@ -1,12 +1,8 @@
 import { CHG_POSTS } from '../actions/posts-actions';
+import {UPDATE_POST} from '../actions/posts-actions' ;
 const initialState = {
     posts: [
-        {
-            "userId": 1,
-            "id": 1,
-            "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-        }
+        
     ]
 }
 export default function changePosts(state = initialState, { type, payload }) {
@@ -15,6 +11,17 @@ export default function changePosts(state = initialState, { type, payload }) {
             return {
                 ...state,
                 posts: state.posts.concat(payload)
+            }
+            case UPDATE_POST:
+            let getData = payload.posts;
+            let getIndex = state.posts.findIndex((data)=> {
+                 return data.id === payload.posts.id
+            });
+            state.posts[getIndex].title = getData.title ;
+            state.posts[getIndex].body = getData.body ;
+            return {
+                ...state,
+                posts:state.posts
             }
         default:
             return state;
