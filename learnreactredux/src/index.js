@@ -8,9 +8,11 @@ import thunk from 'redux-thunk' ;
 import {Provider} from 'react-redux' ;
 import changeUser from './reducers/user-reducers' ;
 import changeItems from './reducers/items-reducers' ;
+import changePosts from './reducers/posts-reducers' ;
 const allReducers = combineReducers({
     user:changeUser,
-    items:changeItems
+    items:changeItems,
+    posts:changePosts
 });
 const thirdParty = compose(
     applyMiddleware(thunk),

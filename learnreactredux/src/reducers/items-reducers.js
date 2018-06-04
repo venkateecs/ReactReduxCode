@@ -12,6 +12,7 @@ export default function changeItems(state=initialState,{type,payload}) {
        ...state,
        items:[...state.items,payload.items]
      }
+     break;
      default : return state
   }
 }
